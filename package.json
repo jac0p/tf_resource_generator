@@ -1,0 +1,22 @@
+{
+  "name": "tf_resource_generator",
+  "version": "0.0.0",
+  "description": "",
+  "author": "jac0p",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacop/advent-of-code"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "lint-test": "gulp lint test"
+  },
+  "licenses": [
+    "MIT"
+  ],
+  "dependencies" :
+  { "command-line-args" : "3.0.4"
+  , "command-line-usage" : "3.0.8"
+  }
+}
