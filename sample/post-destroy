@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ssh-keygen -f ~/.ssh/known_hosts -R abc-prod-01.fancycompany-name.com
+ssh-keygen -f ~/.ssh/known_hosts -R 192.168.56.2
+ssh-keygen -f ~/.ssh/known_hosts -R abc-prod-02.fancycompany-name.com
+ssh-keygen -f ~/.ssh/known_hosts -R 192.168.56.3
+ssh-keygen -f ~/.ssh/known_hosts -R abc-prod-03.fancycompany-name.com
+ssh-keygen -f ~/.ssh/known_hosts -R 192.168.56.4

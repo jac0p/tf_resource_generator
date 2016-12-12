@@ -1,0 +1,10 @@
+# See issue https://github.com/hashicorp/terraform/issues/5607
+
+# govc ls -l /ABC-DEF/network/NETwORK_PROT
+#   /ABC-DEF/network/NETwORK_PROT (DistributedVirtualPortgroup)
+#   /ABC-DEF/network/NETwORK_PROT (Network)
+#
+# ...
+
+# For large terraform apply consider ( to avoid SAN issue )
+# terraform apply -parallelism=2

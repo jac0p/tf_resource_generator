@@ -1,0 +1,7 @@
+
+# Prefixing commandline with space as per below will prevent them from
+# appearing in bash.history file.  Which is critical for security reason
+
+ export TF_VAR_vsphere_user='domain\USERNAME'
+ export TF_VAR_vsphere_password='PASSWORD'
+ export TF_VAR_vsphere_server='vsph-01.domain.com'
