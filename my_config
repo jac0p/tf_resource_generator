@@ -1,3 +1,3 @@
-abc-prod-01.fancycompany-name.com,4,16,500,N01_PROTOCOL,192.168.56.2
-abc-prod-02.fancycompany-name.com,4,16,500,N01_PROTOCOL,192.168.56.3
-abc-prod-03.fancycompany-name.com,4,16,500,N01_PROTOCOL,192.168.56.4
+abc-prod-01.fancycompany-name.com,4,16,500,N01_PROTOCOL,192.168.56.2,192.168.56.1,fancy-dom.com,New Machines,ABC-DEV,ABC-DEF-Prod,Templates/RHEL7
+abc-prod-02.fancycompany-name.com,4,16,500,N01_PROTOCOL,192.168.56.3,192.168.56.1,fancy-dom.com,New Machines,ABC-DEV,ABC-DEF-Prod,Templates/RHEL7
+abc-prod-03.fancycompany-name.com,4,16,500,N01_PROTOCOL,192.168.56.4,192.168.56.1,fancy-dom.com,New Machines,ABC-DEV,ABC-DEF-Prod,Templates/RHEL7
