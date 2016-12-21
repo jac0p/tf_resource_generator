@@ -26,7 +26,7 @@ const sections = [
 ]
 
 // CSV "header"
-const headers = ["hostname", "cpu", "memory", "disk", "network_adapter", "ip"];
+const headers = ["hostname", "cpu", "memory", "disk", "network_adapter", "ip", "gateway", "domain", "folder", "datacenter", "cluster",  "datastore", "template" ];
 
 function createPostDestroy(properties) {
   var stream = fs.createWriteStream("out/post-destroy");
@@ -39,6 +39,25 @@ function createPostDestroy(properties) {
       console.log(`Adding machine: ${hostname}, with IP: ${ip}`);
       stream.write("ssh-keygen -f ~/.ssh/known_hosts -R " + hostname + "\n");
       stream.write("ssh-keygen -f ~/.ssh/known_hosts -R " + ip + "\n");
+    }
+    stream.end();
+  });
+}
+
+
+function createVirtualMachineTF(properties) {
+  var stream = fs.createWriteStream("out/virtual_machine.tf");
+
+  stream.once('open', function(fd) {
+    for (i = 0; i < properties.length; i++) { 
+      var host = properties[i];
+      var hostname = properties[i]["hostname"];
+      var ip = properties[i]["ip"];
+      console.log(`Adding machine: ${hostname}, with IP: ${ip}`);
+      
+      var o = 
+      "\n resource \"vsphere_virtual_machine\" \"" + hostname + "\" { name   = \"" + hostname + "\" folder = " + host["folder"] + " vcpu   = " + host["cpu"] + " memory = " + host["memory"] + " domain = " + host["domain"] + " dns_suffixes = [" + host["domain"] + "] dns_servers = [\"192.168.51.11\",\"10.10.11.11\"] datacenter = " + host["datacenter"] + " cluster = " + host["cluster"] + " time_zone = \"America/New_York\"\n network_interface { label = " + host["network_adapter"] + " ipv4_address = " + host["ip"] + " ipv4_prefix_length = \"24\" ipv4_gateway = " + host["gateway"] + " } \n disk { datastore = " + host["datastore"] + " template = " + host["template"] + " size = " + host["disk"] + " type = \"thin\" } \n } \n";
+    stream.write(o);
     }
     stream.end();
   });
@@ -75,9 +94,9 @@ function main() {
     var machineProperties = parseConfig(options["config"]);
     console.log("Creating post-destroy file.");
     createPostDestroy(machineProperties);
+    createVirtualMachineTF(machineProperties);
   } 
 }
 
 main();
-
 
