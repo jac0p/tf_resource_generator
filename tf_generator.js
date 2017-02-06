@@ -56,7 +56,8 @@ function createVirtualMachineTF(properties) {
       console.log(`Adding machine: ${hostname}, with IP: ${ip}`);
       
       var o = 
-      "\n resource \"vsphere_virtual_machine\" \"" + hostname + "\" { name   = \"" + hostname + "\" folder = " + host["folder"] + " vcpu   = " + host["cpu"] + " memory = " + host["memory"] + " domain = " + host["domain"] + " dns_suffixes = [" + host["domain"] + "] dns_servers = [\"192.168.51.11\",\"10.10.11.11\"] datacenter = " + host["datacenter"] + " cluster = " + host["cluster"] + " time_zone = \"America/New_York\"\n network_interface { label = " + host["network_adapter"] + " ipv4_address = " + host["ip"] + " ipv4_prefix_length = \"24\" ipv4_gateway = " + host["gateway"] + " } \n disk { datastore = " + host["datastore"] + " template = " + host["template"] + " size = " + host["disk"] + " type = \"thin\" } \n } \n";
+        "\nresource \"vsphere_virtual_machine\" \"" + hostname + "\" {\n  name   = \"" + hostname + "\"\n  folder = \"" + host["folder"] + "\"\n  vcpu   = " + host["cpu"] + "\n  memory = " + host["memory"] + "\n  domain = \"" + host["domain"] + "\"\n  dns_suffixes = [" + host["domain"] + "]\n  dns_servers = [\"192.168.51.11\",\"10.10.11.11\"]\n  datacenter = \"" + host["datacenter"] + "\"\n  cluster = \"" + host["cluster"] + "\"\n  time_zone = \"America/New_York\"\n\n  network_interface {\n      label = \"" + host["network_adapter"] + "\"\n      ipv4_address = \"" + host["ip"] + "\"\n      ipv4_prefix_length = \"24\" ipv4_gateway = \"" + host["gateway"] + "\"\n  } \n\n  disk {\n    datastore = \"" + host["datastore"] + "\"\n    template = \"" + host["template"] + "\"\n    size = \"" + host["disk"] + "\"\n    type = \"thin\"\n  }\n}\n";
+
     stream.write(o);
     }
     stream.end();
